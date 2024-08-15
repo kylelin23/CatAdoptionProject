@@ -2,13 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { Pressable, View, Text } from 'react-native';
 
-interface MainContentProps {
-  phase: string;
-}
-
-const MainContent: React.FC<MainContentProps> = ({ phase }) => {
-
-// export default function HomePage() {
+export default function HomePage() {
   const saveButton = () => {
     alert("Saving this page! ");
   }
@@ -26,8 +20,6 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     </View>
   );
 }
-
-export default MainContent;
 
 const styles = StyleSheet.create({
   title:{

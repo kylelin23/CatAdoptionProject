@@ -7,7 +7,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
-import MainContent from './mainContent/AdoptionDay';
+import MainContent from './mainContent/Home';
 import NavBar from './navBar/_layout';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
 
   mainContent: {
     flex: 1,
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
   },
 
   navBar: {

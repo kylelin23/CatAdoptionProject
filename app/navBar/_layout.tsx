@@ -40,6 +40,8 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
         <Text style = {styles.icon}>M</Text>
       </Pressable>
     </View>
+    
+    // OLD TAB BAR NAVIGATION: 
     // <Tabs
     //   screenOptions={{
     //     tabBarActiveTintColor: 'black', // Color for active icons
