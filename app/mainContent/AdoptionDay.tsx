@@ -14,9 +14,6 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
   }
   return (
     <View style = {styles.screen}>
-      <View style = {styles.titleContainer}>
-        <Text style = {styles.title}>Our Cat App</Text>
-      </View>
       <View>
         <Text>Congratulations! </Text>
         <Text>Here's what you should know on adoption day: </Text>

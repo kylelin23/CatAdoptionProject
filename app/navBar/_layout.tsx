@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
+
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 interface NavBarProps {
@@ -27,27 +28,27 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="Preparation"
+        name="mainContent/Preparation"
         options={{
-          title: 'Preparation',
+          title: 'P',
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="mainContent/AdoptionDay"
         options={{
-          title: 'Adoption Day',
+          title: 'A',
         }}
       />
       <Tabs.Screen
-        name="First Week"
+        name="mainContent/FirstWeek"
         options={{
-          title: 'First Week',
+          title: 'W',
         }}
       />
       <Tabs.Screen
-        name="First Month"
+        name="mainContent/FirstMonth"
         options={{
-          title: 'First Month',
+          title: 'M',
         }}
       />
     </Tabs>

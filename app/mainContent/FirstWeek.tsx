@@ -2,18 +2,12 @@ import { StyleSheet } from 'react-native';
 
 import { Pressable, View, Text } from 'react-native';
 
-export default function FirstMonth() {
+export default function FirstWeek() {
   const saveButton = () => {
     alert("Saving this page! ");
   }
   return (
     <View style = {styles.screen}>
-      <View style = {styles.titleContainer}>
-        <Text style = {styles.title}>Our Cat App</Text>
-      </View>
-      <View>
-        <Text>First Month Page</Text>
-      </View>
       <View style = {styles.saveButton}>
         <Pressable onPress ={saveButton}>
           <Text style = {styles.saveText}>Save</Text>

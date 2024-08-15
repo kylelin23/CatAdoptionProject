@@ -8,9 +8,6 @@ export default function Preparation() {
   }
   return (
     <View style = {styles.screen}>
-      <View style = {styles.titleContainer}>
-        <Text style = {styles.title}>Our Cat App</Text>
-      </View>
       <View>
         <Text>Preparation Page</Text>
       </View>
