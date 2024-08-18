@@ -13,13 +13,21 @@ export interface MainContentProps {
 }
 
 const MainContent: React.FC<MainContentProps> = ({ phase }) => {
+  if (!phase) {
+    return(
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {<Text>Welcome to the Home Page</Text>}
+      </View>
+    )
+  }
 
   return(
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {phase === 'home' && <Text>Welcome to the Home Page</Text>}
+      {<Text>The stack navigator should go here with the cat room, food bowl room, toy room, etc. screens</Text>}
     </View>
   )
 }
+
 export default MainContent;
 
 export function Home() {

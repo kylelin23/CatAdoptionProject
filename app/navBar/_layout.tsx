@@ -13,34 +13,31 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 
-  const navigation = useNavigation(); 
-
-// export default function TabLayout() {
-  const prepPage = () => {
-    alert("Going to Preparation Page! ");
-  }  
-  const adoptPage = () => {
-    alert("Going to Adoption Page! ");
-  }
-  const weekPage = () => {
-    alert("Going to Week Page! ");
-  }
-  const monthPage = () => {
-    alert("Going to Month Page! ");
-  }
+  // const prepPage = () => {
+  //   alert("Going to Preparation Page! ");
+  // }
+  // const adoptPage = () => {
+  //   alert("Going to Adoption Page! ");
+  // }
+  // const weekPage = () => {
+  //   alert("Going to Week Page! ");
+  // }
+  // const monthPage = () => {
+  //   alert("Going to Month Page! ");
+  // }
 
   return (
     <View style = {styles.bar}>
-      <Pressable onPress={() => navigation.navigate('Cat Room' as never)}>
+      <Pressable onPress={() => onTapHandler('prep')}>
         <Text style = {styles.icon}>P</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler('home')}>
+      <Pressable onPress={() => onTapHandler('adoption')}>
         <Text style = {styles.icon}>A</Text>
       </Pressable>
-      <Pressable onPress = {weekPage}>
+      <Pressable onPress={() => onTapHandler('week 1')}>
         <Text style = {styles.icon}>W</Text>
       </Pressable>
-      <Pressable onPress = {monthPage}>
+      <Pressable onPress={() => onTapHandler('month 1')}>
         <Text style = {styles.icon}>M</Text>
       </Pressable>
     </View>
