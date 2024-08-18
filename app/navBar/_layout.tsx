@@ -1,15 +1,19 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
 
-
-import { useColorScheme } from '@/hooks/useColorScheme';
 import { Text, Pressable, View, StyleSheet } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native'; // Import the hook
+
+import Home from '../mainContent/Home'; // Adjust the path based on the file's location
+
 
 interface NavBarProps {
   onTapHandler: (selectedPhase: string) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
+
+  const navigation = useNavigation(); 
 
 // export default function TabLayout() {
   const prepPage = () => {
@@ -27,10 +31,10 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 
   return (
     <View style = {styles.bar}>
-      <Pressable onPress = {prepPage}>
+      <Pressable onPress={() => navigation.navigate('Cat Room' as never)}>
         <Text style = {styles.icon}>P</Text>
       </Pressable>
-      <Pressable onPress = {adoptPage}>
+      <Pressable onPress={() => onTapHandler('home')}>
         <Text style = {styles.icon}>A</Text>
       </Pressable>
       <Pressable onPress = {weekPage}>

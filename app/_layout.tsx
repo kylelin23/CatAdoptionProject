@@ -37,7 +37,7 @@ export default function RootLayout() {
           <MainContent phase={phase}/>
         </View>
         <View style = {styles.navBar}>
-          <NavBar onTapHandler={(selectedPhase: React.SetStateAction<string>) => setPhase(selectedPhase)}/>
+          <NavBar onTapHandler={(selectedPhase: React.SetStateAction<string>) => setPhase(selectedPhase)} />
         </View>
       </View>
     </ThemeProvider>

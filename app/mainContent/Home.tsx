@@ -6,22 +6,21 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { useNavigation } from '@react-navigation/native'; // Import the hook
+import _layout from '../navBar/_layout';
 
-interface MainContentProps {
+export interface MainContentProps {
   phase: string;
 }
 
-export const MainContent: React.FC<MainContentProps> = ({ phase }) => {
-
-  const navigation = useNavigation(); 
+const MainContent: React.FC<MainContentProps> = ({ phase }) => {
 
   return(
-    <View>
-
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {phase === 'home' && <Text>Welcome to the Home Page</Text>}
     </View>
   )
 }
+export default MainContent;
 
 export function Home() {
   return (
@@ -31,31 +30,31 @@ export function Home() {
   )
 }
 
-export function Preparation() {
+export function CatRoom() {
   return (
     <View>
-      <Text>Preparation Page</Text>
+      <Text>Cat Room Page</Text>
     </View>
   );
 }
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
-const MyStack = () => {
-  return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator screenOptions={{
-        headerStyle: { backgroundColor: 'rgb(193, 199, 195)'},
-      }
-        }>
-        <Stack.Screen name="Cat Adoption App" component={Home} />
-        <Stack.Screen name="Cat Adoption App: Preparation" component={Preparation} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+// const MyStack = () => {
+//   return (
+//     <NavigationContainer independent={true}>
+//       <Stack.Navigator screenOptions={{
+//         headerStyle: { backgroundColor: 'rgb(193, 199, 195)'},
+//       }
+//         }>
+//         <Stack.Screen name="Cat Adoption App" component={Home} />
+//         <Stack.Screen name="Cat Adoption App: Preparation" component={CatRoom} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
 
-export default MyStack;
+// export MyStack;
 
 const styles = StyleSheet.create({
   screen: {
