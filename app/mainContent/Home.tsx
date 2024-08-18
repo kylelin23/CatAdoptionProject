@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { useNavigation } from '@react-navigation/native'; // Import the hook
+
 import _layout from '../navBar/_layout';
 
 export interface MainContentProps {
@@ -13,38 +15,28 @@ export interface MainContentProps {
 }
 
 const MainContent: React.FC<MainContentProps> = ({ phase }) => {
-  if (!phase) {
+
+  const navigation = useNavigation(); 
+
+  if (!phase) { // Starting home page
     return(
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {<Text>Welcome to the Home Page</Text>}
+      <View>
+        <View style = {styles.title}>
+          <Text style = {styles.titleText}>Cat Adoption Project</Text>
+        </View>
+        <Image source={require('../../assets/images/maggy.png')} style = {styles.image}/>
       </View>
     )
   }
 
-  return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {<Text>The stack navigator should go here with the cat room, food bowl room, toy room, etc. screens</Text>}
+  return( // Cat room: 
+    <View>
+      <Image source={require('../../assets/images/room4.png')} style = {styles.image}/>
     </View>
   )
 }
 
 export default MainContent;
-
-export function Home() {
-  return (
-    <View>
-      <Image source={require('../../assets/images/maggy.png')} style = {styles.image}/>
-    </View>
-  )
-}
-
-export function CatRoom() {
-  return (
-    <View>
-      <Text>Cat Room Page</Text>
-    </View>
-  );
-}
 
 // const Stack = createNativeStackNavigator();
 
@@ -71,7 +63,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 500, 
+    height: 625, 
     width: 400,
+  },
+
+  title: {
+    backgroundColor: 'purple', 
+    height: 80,
+    justifyContent: 'center', 
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+
+  titleText: {
+    fontSize: 25,
+    fontWeight: 'bold',
   }
 });

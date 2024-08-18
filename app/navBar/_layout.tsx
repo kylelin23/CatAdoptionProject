@@ -2,10 +2,6 @@ import React from 'react';
 
 import { Text, Pressable, View, StyleSheet } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native'; // Import the hook
-
-import Home from '../mainContent/Home'; // Adjust the path based on the file's location
-
 
 interface NavBarProps {
   onTapHandler: (selectedPhase: string) => void;
