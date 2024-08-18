@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { Image, View, Text } from 'react-native';
+import { ImageBackground, Image, View, Text } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -29,11 +29,45 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  return( // Cat room: 
-    <View>
-      <Image source={require('../../assets/images/room4.png')} style = {styles.image}/>
-    </View>
-  )
+  if(phase === 'prep') {
+    return(
+      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+        <View style = {styles.screen}>
+          <Text style = {styles.placeholderText}>Prep!!!!</Text>
+        </View>
+      </ImageBackground>
+    )
+  }
+
+  if(phase === 'adoption') {
+    return(
+      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+        <View style = {styles.screen}>
+          <Text style = {styles.placeholderText}>Adoption!!!!</Text>
+        </View>
+      </ImageBackground>
+    )
+  }
+
+  if(phase === 'week 1') {
+    return(
+      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+        <View style = {styles.screen}>
+          <Text style = {styles.placeholderText}>Week 1!!!!</Text>
+        </View>
+      </ImageBackground>
+    )
+  }
+
+  if(phase === 'month 1') {
+    return(
+      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+        <View style = {styles.screen}>
+          <Text style = {styles.placeholderText}>Month 1!!!!</Text>
+        </View>
+      </ImageBackground>
+    )
+  }
 }
 
 export default MainContent;
@@ -78,5 +112,13 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 25,
     fontWeight: 'bold',
-  }
+  },
+
+  catRoom: {
+    flex: 1,
+  },
+
+  placeholderText: {
+    fontSize: 100,
+  },
 });
