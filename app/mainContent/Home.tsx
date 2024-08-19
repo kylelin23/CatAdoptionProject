@@ -31,7 +31,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === Phase.Prep) {
+  if(phase === Phase.prep) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -41,7 +41,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === Phase.AdoptionDay) {
+  if(phase === Phase.adoptionDay) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -51,7 +51,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === Phase.Week1) {
+  if(phase === Phase.week1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -61,7 +61,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === Phase.Month1) {
+  if(phase === Phase.month1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>

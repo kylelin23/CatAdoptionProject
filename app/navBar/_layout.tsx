@@ -25,16 +25,16 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 
   return (
     <View style = {styles.bar}>
-      <Pressable onPress={() => onTapHandler(Phase.Prep)}>
+      <Pressable onPress={() => onTapHandler(Phase.prep)}>
         <Text style = {styles.icon}>P</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.AdoptionDay)}>
+      <Pressable onPress={() => onTapHandler(Phase.adoptionDay)}>
         <Text style = {styles.icon}>A</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.Week1)}>
+      <Pressable onPress={() => onTapHandler(Phase.week1)}>
         <Text style = {styles.icon}>W</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.Month1)}>
+      <Pressable onPress={() => onTapHandler(Phase.month1)}>
         <Text style = {styles.icon}>M</Text>
       </Pressable>
     </View>
