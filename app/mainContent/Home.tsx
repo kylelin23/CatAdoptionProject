@@ -10,8 +10,10 @@ import { useNavigation } from '@react-navigation/native'; // Import the hook
 
 import _layout from '../navBar/_layout';
 
+import { Phase } from '../../constants/content'
+
 export interface MainContentProps {
-  phase: string;
+  phase: Phase | undefined;
 }
 
 const MainContent: React.FC<MainContentProps> = ({ phase }) => {
@@ -29,7 +31,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === 'prep') {
+  if(phase === Phase.Prep) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -39,7 +41,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === 'adoption') {
+  if(phase === Phase.AdoptionDay) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -49,7 +51,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === 'week 1') {
+  if(phase === Phase.Week1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
@@ -59,7 +61,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === 'month 1') {
+  if(phase === Phase.Month1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>

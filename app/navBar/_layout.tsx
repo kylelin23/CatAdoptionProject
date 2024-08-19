@@ -2,9 +2,10 @@ import React from 'react';
 
 import { Text, Pressable, View, StyleSheet } from 'react-native';
 
+import { Phase } from "../../constants/content"
 
 interface NavBarProps {
-  onTapHandler: (selectedPhase: string) => void;
+  onTapHandler: (selectedPhase: Phase | undefined) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
@@ -24,16 +25,16 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 
   return (
     <View style = {styles.bar}>
-      <Pressable onPress={() => onTapHandler('prep')}>
+      <Pressable onPress={() => onTapHandler(Phase.Prep)}>
         <Text style = {styles.icon}>P</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler('adoption')}>
+      <Pressable onPress={() => onTapHandler(Phase.AdoptionDay)}>
         <Text style = {styles.icon}>A</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler('week 1')}>
+      <Pressable onPress={() => onTapHandler(Phase.Week1)}>
         <Text style = {styles.icon}>W</Text>
       </Pressable>
-      <Pressable onPress={() => onTapHandler('month 1')}>
+      <Pressable onPress={() => onTapHandler(Phase.Month1)}>
         <Text style = {styles.icon}>M</Text>
       </Pressable>
     </View>
