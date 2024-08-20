@@ -9,12 +9,13 @@ import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import MainContent from './mainContent/Home';
 import NavBar from './navBar/_layout';
+import { Phase } from '../constants/content'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [phase, setPhase] = useState("");
+  const [phase, setPhase] = useState<Phase | undefined>();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -37,7 +38,7 @@ export default function RootLayout() {
           <MainContent phase={phase}/>
         </View>
         <View style = {styles.navBar}>
-          <NavBar onTapHandler={(selectedPhase: React.SetStateAction<string>) => setPhase(selectedPhase)} />
+          <NavBar onTapHandler={(selectedPhase: Phase | undefined) => setPhase(selectedPhase)} />
         </View>
       </View>
     </ThemeProvider>
