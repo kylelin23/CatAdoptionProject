@@ -24,7 +24,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
         <View style = {styles.title}>
           <Text style = {styles.titleText}>Cat Adoption Project</Text>
         </View>
-        <Image source={require('../../assets/images/maggy.png')} style = {styles.image}/>
+        <Image source={require('../../assets/images/betterMaggy.png')} style = {styles.image}/>
       </View>
     )
   }
@@ -33,7 +33,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Prep!!!!</Text>
+          <Text style = {styles.placeholderText}>Preparation!!!!</Text>
         </View>
       </ImageBackground>
     )
@@ -43,7 +43,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Adoption!!!!</Text>
+          <Text style = {styles.placeholderText}>Adoption Day!!!!</Text>
         </View>
       </ImageBackground>
     )
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    backgroundColor: 'purple', 
+    backgroundColor: 'rgb(187, 198, 201)', 
     height: 80,
     justifyContent: 'center', 
     alignItems: 'center',
@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
   },
 
   placeholderText: {
-    fontSize: 100,
+    fontSize: 50,
   },
 });
