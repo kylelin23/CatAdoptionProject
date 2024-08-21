@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Alert, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ImageBackground, Image, View, Text } from 'react-native';
 
@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native'; // Import the hook
 import _layout from '../navBar/_layout';
 
 import { Phase } from '../../constants/content'
+import React from 'react';
 
 export interface MainContentProps {
   phase: Phase | undefined;
@@ -20,13 +21,17 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
 
   const navigation = useNavigation(); 
 
+  const prepFoodButton = () => {
+    alert("fodisjfnosdl");
+  }
+
   if (!phase) { // Starting home page
     return(
       <View>
         <View style = {styles.title}>
           <Text style = {styles.titleText}>Cat Adoption Project</Text>
         </View>
-        <Image source={require('../../assets/images/betterMaggy.png')} style = {styles.image}/>
+        <Image source={require('../../assets/images/betterMaggy.png')} style = {styles.homePageImage}/>
       </View>
     )
   }
@@ -34,29 +39,27 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
   if(phase === Phase.prep) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Preparation!!!!</Text>
-        </View>
+        <TouchableOpacity style = {styles.button} onPress = {prepFoodButton}>
+          <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
+        </TouchableOpacity>
+        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
       </ImageBackground>
     )
   }
 
   if(phase === Phase.adoptionDay) {
     return(
-      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Adoption Day!!!!</Text>
-        </View>
-      </ImageBackground>
+      <View>
+        <Text></Text>
+      </View>
     )
   }
 
   if(phase === Phase.week1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Week 1!!!!</Text>
-        </View>
+       <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
+        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
       </ImageBackground>
     )
   }
@@ -64,9 +67,8 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
   if(phase === Phase.month1) {
     return(
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <View style = {styles.screen}>
-          <Text style = {styles.placeholderText}>Month 1!!!!</Text>
-        </View>
+        <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
+        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
       </ImageBackground>
     )
   }
@@ -93,12 +95,7 @@ export default MainContent;
 // export MyStack;
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
+  homePageImage: {
     height: 625, 
     width: 400,
   },
@@ -122,5 +119,29 @@ const styles = StyleSheet.create({
 
   placeholderText: {
     fontSize: 50,
+  },
+
+  prepToyImage: {
+    resizeMode: 'contain', 
+    height: 100,
+    width: 100,
+    bottom: 100, 
+    right: 50,
+    position: 'absolute',
+  }, 
+
+  button: {
+    bottom: 70, 
+    left: 30, 
+    width: 100, 
+    position: 'absolute',
+    backgroundColor: 'red',
+    borderColor: 'blue',
+    borderWidth: 1,
+  }, 
+
+  image: {
+    resizeMode: 'contain', 
+    width: 100,
   },
 });
