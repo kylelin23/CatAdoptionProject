@@ -58,8 +58,11 @@ const styles = StyleSheet.create({
   },
 
   navBar: {
-    flex: 1, 
+    height: 60,
     justifyContent: 'flex-end',
+    position: 'absolute', 
+    width: '100%', 
+    bottom: 0,
   }
 
 });
