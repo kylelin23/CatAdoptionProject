@@ -10,20 +10,18 @@ import { useNavigation } from '@react-navigation/native'; // Import the hook
 
 import _layout from '../navBar/_layout';
 
+import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { Phase } from '../../constants/content'
-import React from 'react';
+import { CatRoomStack } from '../catRoomStack/CatRoomStack';
+
+import React, { useContext } from 'react';
 
 export interface MainContentProps {
   phase: Phase | undefined;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ phase }) => {
-
-  const navigation = useNavigation(); 
-
-  const prepFoodButton = () => {
-    alert("fodisjfnosdl");
-  }
+const MainContent: React.FC<MainContentProps> = () => {
+  const { phase } = useContext<PhaseContextType>(PhaseContext);
 
   if (!phase) { // Starting home page
     return(
@@ -36,42 +34,7 @@ const MainContent: React.FC<MainContentProps> = ({ phase }) => {
     )
   }
 
-  if(phase === Phase.prep) {
-    return(
-      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <TouchableOpacity style = {styles.button} onPress = {prepFoodButton}>
-          <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
-        </TouchableOpacity>
-        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
-      </ImageBackground>
-    )
-  }
-
-  if(phase === Phase.adoptionDay) {
-    return(
-      <View>
-        <Text></Text>
-      </View>
-    )
-  }
-
-  if(phase === Phase.week1) {
-    return(
-      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-       <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
-        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
-      </ImageBackground>
-    )
-  }
-
-  if(phase === Phase.month1) {
-    return(
-      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <Image source={require('../../assets/images/bowl3.png')} style = {styles.image}/>
-        <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
-      </ImageBackground>
-    )
-  }
+  return (<CatRoomStack/>);
 }
 
 export default MainContent;

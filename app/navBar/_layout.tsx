@@ -5,7 +5,7 @@ import { Text, Pressable, View, StyleSheet } from 'react-native';
 import { Phase } from "../../constants/content"
 
 interface NavBarProps {
-  onTapHandler: (selectedPhase: Phase | undefined) => void;
+  onTapHandler: (selectedPhase: Phase) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {

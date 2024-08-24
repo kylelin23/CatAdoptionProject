@@ -1,9 +1,11 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import 'react-native-reanimated';
 
+import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
+import { PhaseProvider } from '@/context/PhaseProvider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
@@ -14,8 +16,22 @@ import { Phase } from '../constants/content'
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+function Root() {
+  const { phase, setPhase } = useContext<PhaseContextType>(PhaseContext);
+
+  return (
+    <View style = {styles.screen}>
+      <View style = {styles.mainContent}>
+        <MainContent phase={phase}/>
+      </View>
+      <View style = {styles.navBar}>
+        <NavBar onTapHandler={(selectedPhase: Phase) => setPhase(selectedPhase)} />
+      </View>
+    </View>
+  );
+}
+
 export default function RootLayout() {
-  const [phase, setPhase] = useState<Phase | undefined>();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -33,14 +49,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <View style = {styles.screen}>
-        <View style = {styles.mainContent}>
-          <MainContent phase={phase}/>
-        </View>
-        <View style = {styles.navBar}>
-          <NavBar onTapHandler={(selectedPhase: Phase | undefined) => setPhase(selectedPhase)} />
-        </View>
-      </View>
+      <PhaseProvider>
+        <Root/>
+      </PhaseProvider>
     </ThemeProvider>
   );
 }
