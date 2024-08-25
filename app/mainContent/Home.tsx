@@ -1,12 +1,6 @@
-import { Alert, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { ImageBackground, Image, View, Text } from 'react-native';
-
-import { NavigationContainer } from '@react-navigation/native';
-
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import { useNavigation } from '@react-navigation/native'; // Import the hook
+import { Image, View, Text } from 'react-native';
 
 import _layout from '../navBar/_layout';
 

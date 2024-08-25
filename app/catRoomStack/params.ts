@@ -1,6 +1,7 @@
 import { Phase } from '@/constants/content';
 
 export type CatRoomStackParamList = {
-  CatRoom: undefined,
-  CatFoodSubroom: undefined,
+  Home: undefined,
+  Food: undefined,
+  Toy: undefined, 
 };
