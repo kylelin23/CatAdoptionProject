@@ -18,11 +18,12 @@ export const CatFoodSubroomScreen: React.FC = () => {
       <TouchableOpacity style = {styles.button} onPress = {setVisibility}>
         <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
       </TouchableOpacity>
-      <Text>{phase}</Text>
+      <View style = {{alignItems: 'center', paddingVertical: 20,}}>
+        <Text style = {styles.phase}>{phase}: </Text>
+      </View>
+      {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)}
       {isVisible && 
       (<Text>{subroomContent?.thought}</Text>)}
-
-      {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
     </View>
   );
 }
@@ -36,10 +37,15 @@ const styles = StyleSheet.create( {
 
   screen: {
     flex: 1,
+    paddingHorizontal: 20
   },
 
   button: {
     position: 'absolute', 
     bottom: 70, 
+  }, 
+
+  phase: {
+    fontSize: 50, 
   }
 })
