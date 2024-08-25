@@ -1,8 +1,8 @@
 export enum Phase {
-  prep = 'prep',
-  adoptionDay = 'adoptionDay',
-  week1 = 'week1',
-  month1 = 'month1',
+  prep = 'Prep',
+  adoptionDay = 'Adoption Day',
+  week1 = 'Week One',
+  month1 = 'Month One',
 };
 
 export enum Subroom {
@@ -20,7 +20,7 @@ type SubroomContent = {
 };
 
 export let content: Record<Phase, Record<Subroom, SubroomContent | undefined>> = {
-  prep: {
+  Prep: {
     food: {
       thought: "Check to see what I am already eating at my foster mom's or shelter. It's a good idea to maintain the same food and slowly transition over 7-10 days!",
       messages: [
@@ -74,7 +74,7 @@ export let content: Record<Phase, Record<Subroom, SubroomContent | undefined>> =
       ],
     },
   },
-  adoptionDay: {
+  "Adoption Day": {
     food: {
       thought: "I will be shy but leave some food out for me!",
       messages: [
@@ -119,7 +119,7 @@ export let content: Record<Phase, Record<Subroom, SubroomContent | undefined>> =
       messages: [],
     },
   },
-  week1: {
+  "Week One": {
     food: undefined,
     litter: undefined,
     toys: undefined,
@@ -127,7 +127,7 @@ export let content: Record<Phase, Record<Subroom, SubroomContent | undefined>> =
     bedding: undefined,
     vet: undefined,
   },
-  month1: {
+  "Month One": {
     food: undefined,
     litter: undefined,
     toys: undefined,
