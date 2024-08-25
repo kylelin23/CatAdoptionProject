@@ -13,10 +13,13 @@ const Stack = createNativeStackNavigator<CatRoomStackParamList>();
 export const CatRoomStack: React.FC = () => {
   return (
     <NavigationContainer independent>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Home' screenOptions={{
+        headerStyle: { backgroundColor: 'rgb(187, 198, 201)'},
+        headerTintColor: 'black'
+      }}>
         <Stack.Screen name='Home' component={CatRoomScreen}/>
         <Stack.Screen name='Food' component={CatFoodSubroomScreen} />
-        <Stack.Screen name = 'Toy' component = {CatToySubroomScreen} />
+        <Stack.Screen name = 'Toys' component = {CatToySubroomScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

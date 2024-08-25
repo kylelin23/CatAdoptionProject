@@ -18,7 +18,7 @@ export const CatRoomScreen: React.FC = () => {
           <Image source={require('../../assets/images/bowl3.png')} style = {styles.foodImage}/>
         </TouchableOpacity>
         <TouchableOpacity style = {styles.toyButton} onPress = {() => {
-          navigation.navigate('Toy');
+          navigation.navigate('Toys');
         }}>
           <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
         </TouchableOpacity>
