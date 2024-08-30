@@ -7,8 +7,7 @@ import 'react-native-reanimated';
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { PhaseProvider } from '@/context/PhaseProvider';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { View } from 'react-native';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import MainContent from './mainContent/Home';
 import NavBar from './navBar/_layout';
 import { Phase } from '../constants/content'
@@ -20,16 +19,19 @@ function Root() {
   const { phase, setPhase } = useContext<PhaseContextType>(PhaseContext);
 
   return (
-    <SafeAreaView style = {{height: '100%', backgroundColor: 'rgb(139, 223, 232)'}}>
-      <View style = {styles.screen}>
-        <View style = {styles.mainContent}>
-          <MainContent phase={phase}/>
+    <>
+      <SafeAreaView style = {styles.topSafeArea}></SafeAreaView>
+      <SafeAreaView style = {styles.bottomSafeArea}>
+        <View style = {styles.screen}>
+          <View style = {styles.mainContent}>
+            <MainContent phase={phase}/>
+          </View>
+          <View style = {styles.navBar}>
+            <NavBar onTapHandler={(selectedPhase: Phase) => setPhase(selectedPhase)} />
+          </View>
         </View>
-        <View style = {styles.navBar}>
-          <NavBar onTapHandler={(selectedPhase: Phase) => setPhase(selectedPhase)} />
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 
@@ -59,6 +61,14 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
+  topSafeArea: {
+    flex: 0,
+    backgroundColor: 'rgb(188, 196, 199)'
+  },
+  bottomSafeArea: {
+    flex: 1,
+    backgroundColor: 'rgb(139, 223, 232)'
+  },
   screen: {
     flex: 1,
   }, 
