@@ -17,6 +17,9 @@
       "bundleIdentifier": "com.deedubsoftware.catwise",
       "config": {
         "usesNonExemptEncryption": false
+      },
+      "entitlements": {
+        "aps-environment": "development"
       }
     },
     "android": {
