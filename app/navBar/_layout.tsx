@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(139, 223, 232)',
     flexDirection: 'row', 
     justifyContent: 'space-around',
-    padding: 20,
   },
 
   icon: {
     fontSize: 20,
     color:'gray',
+    padding: 20,
   }
 })
 
