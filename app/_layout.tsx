@@ -8,7 +8,7 @@ import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { PhaseProvider } from '@/context/PhaseProvider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import MainContent from './mainContent/Home';
 import NavBar from './navBar/_layout';
 import { Phase } from '../constants/content'
@@ -20,14 +20,16 @@ function Root() {
   const { phase, setPhase } = useContext<PhaseContextType>(PhaseContext);
 
   return (
-    <View style = {styles.screen}>
-      <View style = {styles.mainContent}>
-        <MainContent phase={phase}/>
+    <SafeAreaView style = {{height: '100%', backgroundColor: 'rgb(139, 223, 232)'}}>
+      <View style = {styles.screen}>
+        <View style = {styles.mainContent}>
+          <MainContent phase={phase}/>
+        </View>
+        <View style = {styles.navBar}>
+          <NavBar onTapHandler={(selectedPhase: Phase) => setPhase(selectedPhase)} />
+        </View>
       </View>
-      <View style = {styles.navBar}>
-        <NavBar onTapHandler={(selectedPhase: Phase) => setPhase(selectedPhase)} />
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -63,15 +65,10 @@ const styles = StyleSheet.create({
 
   mainContent: {
     flex: 1,
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
   },
 
   navBar: {
-    height: 60,
     justifyContent: 'flex-end',
-    position: 'absolute', 
     width: '100%', 
     bottom: 0,
   }

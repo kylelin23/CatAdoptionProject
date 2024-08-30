@@ -84,7 +84,6 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 const styles = StyleSheet.create({
   bar: {
     backgroundColor: 'rgb(139, 223, 232)',
-    height: 60,
     flexDirection: 'row', 
     justifyContent: 'space-around',
     padding: 20,

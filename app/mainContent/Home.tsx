@@ -53,8 +53,7 @@ export default MainContent;
 
 const styles = StyleSheet.create({
   homePageImage: {
-    height: 625, 
-    width: 400,
+    width: '100%',
   },
 
   title: {
