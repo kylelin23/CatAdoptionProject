@@ -32,8 +32,8 @@ export const CatFoodSubroomScreen: React.FC = () => {
         </View>
       </View>)}
 
-      <View style = {{flex: 1, paddingTop: 80}}>
-        <View style = {{gap: 80}}>
+      <View style = {{flex: 1, justifyContent: 'center'}}>
+        <View style = {{gap: 80,}}>
           <View style = {{alignItems: 'center'}}>
             <TouchableOpacity onPress = {() => showMessage(0)}>
               <Image source = {(require('../../assets/images/bowl1.png'))}style = {styles.placeholder}></Image>
@@ -75,12 +75,11 @@ const styles = StyleSheet.create( {
 
   screen: {
     flex: 1,
-    paddingHorizontal: 20,
   },
 
   button: {
     position: 'absolute', 
-    bottom: 70, 
+    bottom: 30, 
   }, 
 
   phase: {
@@ -99,11 +98,19 @@ const styles = StyleSheet.create( {
     fontSize: 10, 
     borderRadius: 15,
     height: 160,
+    width: 200,
     justifyContent: 'center',
   }, 
 
   container: {
-    position: 'absolute', paddingTop: 170, width: 290, paddingLeft: 90,
+    position: 'absolute', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    // paddingTop: 170, 
+    // width: 290, 
+    // paddingLeft: 90,
   }, 
 
 })
