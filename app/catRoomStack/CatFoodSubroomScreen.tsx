@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { content, Subroom } from '@/constants/content';
@@ -108,9 +108,6 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     height: '100%',
     width: '100%',
-    // paddingTop: 170, 
-    // width: 290, 
-    // paddingLeft: 90,
   }, 
 
 })
