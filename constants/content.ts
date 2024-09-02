@@ -14,6 +14,15 @@ export enum Subroom {
   vet = 'vet',
 };
 
+export const SubroomNames: Record<Subroom, string> = {
+  [Subroom.food]: "Food",
+  [Subroom.litter]: "Litter",
+  [Subroom.toys]: "Toys",
+  [Subroom.scratchingItems]: "Scratching Items",
+  [Subroom.bedding]: "Bedding",
+  [Subroom.vet]: "Vet",
+}
+
 type SubroomContent = {
   thought: string;
   messages: string[];

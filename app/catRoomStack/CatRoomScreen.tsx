@@ -5,6 +5,7 @@ import { useNavigation } from 'expo-router';
 
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { CatRoomStackParamList } from "./params"
+import { Subroom } from '@/constants/content';
 
 export const CatRoomScreen: React.FC = () => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
@@ -13,12 +14,12 @@ export const CatRoomScreen: React.FC = () => {
   return (
     <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         <TouchableOpacity style = {styles.foodButton} onPress = {() => {
-          navigation.navigate('Food');
+          navigation.navigate('Subroom', {subroom: Subroom.food});
         }}>
           <Image source={require('../../assets/images/bowl3.png')} style = {styles.foodImage}/>
         </TouchableOpacity>
         <TouchableOpacity style = {styles.toyButton} onPress = {() => {
-          navigation.navigate('Toys');
+          navigation.navigate('Subroom', {subroom: Subroom.toys});
         }}>
           <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
         </TouchableOpacity>

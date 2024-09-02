@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageRequireSource } from 'react-native'
 import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
-import { content, Subroom } from '@/constants/content';
-import {LinearGradient} from 'expo-linear-gradient';
+import { content, SubroomNames, Subroom } from '@/constants/content';
+import { LinearGradient } from 'expo-linear-gradient';
+import { CatRoomStackParamList } from './params'
+import { CustomHeader } from "./CustomHeader";
 
 type MessageViewProp = {
   message: string,
@@ -24,14 +27,47 @@ const MessageView: React.FC<MessageViewProp> = ({message}) => {
   );
 }
 
-export const CatFoodSubroomScreen: React.FC = () => {
+const subroomImages: Record<Subroom, ImageRequireSource[]> = {
+  [Subroom.food]: [
+    require('../../assets/images/bowl1.png'),
+    require('../../assets/images/bowl3.png'),
+    require('../../assets/images/bowl5.png'),
+    require('../../assets/images/bowl4.png'),
+  ],
+  [Subroom.toys]: [
+    require('../../assets/images/toy1.png'),
+    require('../../assets/images/toy2.png'),
+    require('../../assets/images/toy3.png'),
+    require('../../assets/images/toy4.png'),
+    require('../../assets/images/toy5.png'),
+  ],
+  [Subroom.litter]: [],
+  [Subroom.scratchingItems]: [],
+  [Subroom.bedding]: [],
+  [Subroom.vet]: []
+}
+
+type Props = NativeStackScreenProps<CatRoomStackParamList, 'Subroom'>;
+
+export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
-  const subroomContent = phase ? content[phase][Subroom.food] : { thought: '', messages: [] };
+  const subroom = route.params.subroom;
+  const subroomContent = phase ? content[phase][subroom] : { thought: '', messages: [] };
   const [messageIndex, setMessageIndex] = useState<number>(0);
+  const [images, setImages] = useState<ImageRequireSource[]>([]);
+
   // isVisible is set to false and you can use setIsVisible to change the value of isVisible
   const showMessage = (index: number) => {
     setMessageIndex(index);
   }
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => <CustomHeader title={SubroomNames[route.params.subroom]} />, // use the custom header
+    });
+
+    setImages(subroomImages[route.params.subroom]);
+  }, [route.params.subroom]);
 
   // const halfScreenWidth = Dimensions.get('window').width/2;
 
@@ -47,20 +83,20 @@ export const CatFoodSubroomScreen: React.FC = () => {
         <View style = {{gap: 80,}}>
           <View style = {{alignItems: 'center'}}>
             <TouchableOpacity onPress = {() => showMessage(0)}>
-              <Image source = {(require('../../assets/images/bowl1.png'))}style = {styles.placeholder}></Image>
+              <Image source = {(images[0])}style = {styles.placeholder}></Image>
             </TouchableOpacity>
           </View>
           <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
             <TouchableOpacity onPress = {() => showMessage(1)}>
-              <Image source = {(require('../../assets/images/bowl3.png'))}style = {styles.placeholder}></Image>
+              <Image source = {(images[1])}style = {styles.placeholder}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress = {() => showMessage(2)}>
-              <Image source = {(require('../../assets/images/bowl5.png'))}style = {styles.placeholder}></Image>
+              <Image source = {(images[2])}style = {styles.placeholder}></Image>
             </TouchableOpacity>
           </View>
           <View style = {{alignItems: 'center'}}>
             <TouchableOpacity onPress = {() => showMessage(3)}>
-              <Image source = {(require('../../assets/images/bowl4.png'))}style = {styles.placeholder}></Image>
+              <Image source = {(images[3])}style = {styles.placeholder}></Image>
             </TouchableOpacity>
           </View>
         </View>
