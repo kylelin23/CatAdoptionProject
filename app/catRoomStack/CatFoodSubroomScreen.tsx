@@ -1,9 +1,28 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
 
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { content, Subroom } from '@/constants/content';
 import {LinearGradient} from 'expo-linear-gradient';
+
+type MessageViewProp = {
+  message: string,
+};
+
+const MessageView: React.FC<MessageViewProp> = ({message}) => {
+  return (
+    <Animated.View
+      style={styles.container}
+      entering={FadeInLeft.springify()}
+      exiting={FadeOutRight.springify()}
+    >
+      <View style = {styles.textContainer}>
+        <Text>{message}</Text>
+      </View>
+    </Animated.View>
+  );
+}
 
 export const CatFoodSubroomScreen: React.FC = () => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
@@ -19,18 +38,10 @@ export const CatFoodSubroomScreen: React.FC = () => {
   return (
     <LinearGradient colors={['#rgb(173, 217, 160)', '#3b5998', '#192f6a']} style = {styles.screen}>
       {messageIndex == -1 && 
-      (<View style = {styles.container}>
-        <View style = {styles.textContainer}>
-          <Text>Thought: {subroomContent?.thought}</Text>
-        </View>
-      </View>)}
+      (<MessageView message={`Thought: ${subroomContent?.thought}`}/>)}
 
       {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
-      (<View style = {styles.container}>
-        <View style = {styles.textContainer}>
-          <Text>{messageIndex+1}. {subroomContent?.messages[messageIndex]}</Text>
-        </View>
-      </View>)}
+      (<MessageView key={messageIndex} message={`${messageIndex+1}. ${subroomContent?.messages[messageIndex]}`}/>)}
 
       <View style = {{flex: 1, justifyContent: 'center'}}>
         <View style = {{gap: 80,}}>
