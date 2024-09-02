@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Text, Pressable, View, StyleSheet } from 'react-native';
 
@@ -9,34 +9,29 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
+  const [selectedPhase, setSelectedPhase] = useState<Phase | undefined>();
 
-  // const prepPage = () => {
-  //   alert("Going to Preparation Page! ");
-  // }
-  // const adoptPage = () => {
-  //   alert("Going to Adoption Page! ");
-  // }
-  // const weekPage = () => {
-  //   alert("Going to Week Page! ");
-  // }
-  // const monthPage = () => {
-  //   alert("Going to Month Page! ");
-  // }
+  const data: [Phase, string][] = [
+    [Phase.prep, 'P'],
+    [Phase.adoptionDay, 'A'],
+    [Phase.week1, 'W'],
+    [Phase.month1, 'M'],
+  ];
 
   return (
     <View style = {styles.bar}>
-      <Pressable onPress={() => onTapHandler(Phase.prep)}>
-        <Text style = {styles.icon}>P</Text>
-      </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.adoptionDay)}>
-        <Text style = {styles.icon}>A</Text>
-      </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.week1)}>
-        <Text style = {styles.icon}>W</Text>
-      </Pressable>
-      <Pressable onPress={() => onTapHandler(Phase.month1)}>
-        <Text style = {styles.icon}>M</Text>
-      </Pressable>
+
+      {
+        data.map((entry) => {
+          const phase = entry[0];
+          const text = entry[1];
+          return (
+            <Pressable key={text} onPress={() => { setSelectedPhase(phase); onTapHandler(phase); }}>
+              <Text style = {[styles.icon, selectedPhase === phase ? styles.selectd : {}]}>{text}</Text>
+            </Pressable>
+        )})
+      }
+
     </View>
     
     // OLD TAB BAR NAVIGATION: 
@@ -90,9 +85,13 @@ const styles = StyleSheet.create({
 
   icon: {
     fontSize: 20,
-    color:'gray',
+    color: 'gray',
     padding: 20,
-  }
+  },
+
+  selectd: {
+    backgroundColor: 'darkturquoise',
+  },
 })
 
 export default NavBar;
