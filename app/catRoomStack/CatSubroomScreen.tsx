@@ -54,7 +54,8 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   const subroom = route.params.subroom;
   const subroomContent = phase ? content[phase][subroom] : { thought: '', messages: [] };
   const [messageIndex, setMessageIndex] = useState<number>(0);
-  const [images, setImages] = useState<ImageRequireSource[]>([]);
+
+  const images = subroomImages[route.params.subroom];
 
   // isVisible is set to false and you can use setIsVisible to change the value of isVisible
   const showMessage = (index: number) => {
@@ -65,8 +66,6 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
     navigation.setOptions({
       headerTitle: () => <CustomHeader title={SubroomNames[route.params.subroom]} />, // use the custom header
     });
-
-    setImages(subroomImages[route.params.subroom]);
   }, [route.params.subroom]);
 
   // const halfScreenWidth = Dimensions.get('window').width/2;
