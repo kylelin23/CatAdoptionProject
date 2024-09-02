@@ -2,12 +2,15 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 
+type Props = {
+  title: string,
+};
 
-export const CustomHeader = () => {
+export const CustomHeader: React.FC<Props> = ({title}) => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   return (
     <View style = {styles.container}>
-      <Text style = {styles.title}>Home</Text>
+      <Text style = {styles.title}>{title}</Text>
       <Text style = {styles.subtitle}>{phase}</Text>
     </View>
   );

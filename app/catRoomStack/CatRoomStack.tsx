@@ -9,8 +9,6 @@ import { CatFoodSubroomScreen } from "./CatFoodSubroomScreen"
 import { CatToySubroomScreen } from "./CatToySubroomScreen"
 
 import { CustomHeader } from "./CustomHeader";
-import { CustomHeader2 } from "./CustomHeader2";
-import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator<CatRoomStackParamList>();
 
@@ -28,14 +26,14 @@ export const CatRoomStack: React.FC = () => {
         name='Home' 
         component={CatRoomScreen}
         options={{
-          headerTitle: () => <CustomHeader />, // use the custom header
+          headerTitle: () => <CustomHeader title='Home' />, // use the custom header
         }}></Stack.Screen>
         
         <Stack.Screen 
         name='Food' 
         component={CatFoodSubroomScreen} 
         options={{
-          headerTitle: () => <CustomHeader2 />, // use the custom header
+          headerTitle: () => <CustomHeader title='Food' />, // use the custom header
         }}></Stack.Screen>
         
         <Stack.Screen name = 'Toys' component = {CatToySubroomScreen} />
