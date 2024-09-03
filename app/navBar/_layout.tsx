@@ -27,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
           const text = entry[1];
           return (
             <Pressable key={text} onPress={() => { setSelectedPhase(phase); onTapHandler(phase); }}>
-              <Text style = {[styles.icon, selectedPhase === phase ? styles.selectd : {}]}>{text}</Text>
+              <Text style = {[styles.icon , selectedPhase === phase ? styles.selectd : {}]}>{text}</Text>
             </Pressable>
         )})
       }
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   selectd: {
-    backgroundColor: 'darkturquoise',
+    color: 'white'
   },
 })
 
