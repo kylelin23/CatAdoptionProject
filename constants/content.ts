@@ -2,7 +2,7 @@ export enum Phase {
   prep = 'Prep',
   adoptionDay = 'Adoption Day',
   week1 = 'Week One',
-  month1 = 'Month One',
+  settlingIn = 'Settling In',
 };
 
 export enum Subroom {
@@ -136,7 +136,7 @@ export let content: Record<Phase, Record<Subroom, SubroomContent | undefined>> =
     bedding: undefined,
     vet: undefined,
   },
-  "Month One": {
+  "Settling In": {
     food: undefined,
     litter: undefined,
     toys: undefined,

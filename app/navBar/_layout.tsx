@@ -15,7 +15,7 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
     [Phase.prep, 'P'],
     [Phase.adoptionDay, 'A'],
     [Phase.week1, 'W'],
-    [Phase.month1, 'M'],
+    [Phase.settlingIn, 'S'],
   ];
 
   return (
