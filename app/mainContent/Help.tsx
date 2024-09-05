@@ -31,7 +31,7 @@ const MainContent: React.FC<MainContentProps> = () => {
         </View>
         <LinearGradient colors = {['rgb(217, 147, 210)', 'white']}style = {styles.homePageImage}>
           <TouchableOpacity style = {styles.catImageContainer} onPress = {changeVisibility}>
-            <Image style = {styles.catImage} source = {require('../../assets/images/cat.webp')}></Image>
+            <Image style = {styles.catImage} source = {require('../../assets/images/maggy2.jpeg')}></Image>
           </TouchableOpacity>
           <View style = {styles.container}>
             {(isVisible == false) && 
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    backgroundColor: 'rgb(187, 198, 201)', 
+    // backgroundColor: 'rgb(187, 198, 201)', 
+    backgroundColor: 'purple',
     height: 80,
     justifyContent: 'center', 
     alignItems: 'center',
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 25,
     fontWeight: 'bold',
+    color: 'white'
   },
 
   catRoom: {

@@ -78,14 +78,15 @@ const NavBar: React.FC<NavBarProps> = ({ onTapHandler }) => {
 
 const styles = StyleSheet.create({
   bar: {
-    backgroundColor: 'rgb(139, 223, 232)',
+    // backgroundColor: 'rgb(139, 223, 232)',
+    backgroundColor: 'purple',
     flexDirection: 'row', 
     justifyContent: 'space-around',
   },
 
   icon: {
     fontSize: 20,
-    color: 'gray',
+    color: 'black',
     padding: 20,
   },
 
