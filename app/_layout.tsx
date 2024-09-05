@@ -8,7 +8,7 @@ import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { PhaseProvider } from '@/context/PhaseProvider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
-import MainContent from './mainContent/Home';
+import MainContent from './mainContent/Help';
 import NavBar from './navBar/_layout';
 import { Phase } from '../constants/content'
 
