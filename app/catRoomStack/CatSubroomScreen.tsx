@@ -71,7 +71,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   // const halfScreenWidth = Dimensions.get('window').width/2;
 
   return (
-    <LinearGradient colors={['#rgb(173, 217, 160)', '#3b5998', '#192f6a']} style = {styles.screen}>
+    <LinearGradient colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
       {messageIndex == -1 && 
       (<MessageView message={`Thought: ${subroomContent?.thought}`}/>)}
 
