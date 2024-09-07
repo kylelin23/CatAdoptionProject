@@ -27,7 +27,7 @@ const MainContent: React.FC<MainContentProps> = () => {
     return(
       <LinearGradient colors = {['rgb(217, 147, 210)', 'white']}style = {styles.homePageImage}>
         <View style = {styles.title}>
-          <Text style = {styles.titleText}>Welcome to Catwise! </Text>
+          <Text style = {styles.titleText}>Welcome to Catwise!</Text>
         </View>
         <TouchableOpacity style = {styles.catImageContainer} onPress = {changeVisibility}>
           <Image style = {styles.catImage} source = {require('../../assets/images/maggy2.jpeg')}></Image>
