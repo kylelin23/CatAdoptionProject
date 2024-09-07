@@ -53,7 +53,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   const subroom = route.params.subroom;
   const subroomContent = phase ? content[phase][subroom] : { thought: '', messages: [] };
-  const [messageIndex, setMessageIndex] = useState<number>(0);
+  const [messageIndex, setMessageIndex] = useState<number>(-1);
 
   const images = subroomImages[route.params.subroom];
 
