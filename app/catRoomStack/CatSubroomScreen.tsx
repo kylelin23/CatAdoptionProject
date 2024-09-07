@@ -73,10 +73,10 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   return (
     <LinearGradient colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
       {messageIndex == -1 && 
-      (<MessageView message={`Thought: ${subroomContent?.thought}`}/>)}
+      (<MessageView message={`${subroomContent?.thought}`}/>)}
 
       {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
-      (<MessageView key={messageIndex} message={`${messageIndex+1}. ${subroomContent?.messages[messageIndex]}`}/>)}
+      (<MessageView key={messageIndex} message={`${subroomContent?.messages[messageIndex]}`}/>)}
 
       <View style = {{flex: 1, justifyContent: 'center'}}>
         <View style = {{gap: 80,}}>
