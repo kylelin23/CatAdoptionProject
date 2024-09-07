@@ -25,7 +25,7 @@ export const CatRoomScreen: React.FC = () => {
 
       {
         buttonData.map((data) => (
-          <TouchableOpacity style = {data[1]} onPress = {() => {
+          <TouchableOpacity key={data[0]} style = {data[1]} onPress = {() => {
             navigation.navigate('Subroom', {subroom: data[0]});
           }}>
             <Image source={data[3]} style = {data[2]}/>
