@@ -11,7 +11,7 @@ export const CatRoomScreen: React.FC = () => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   const navigation = useNavigation<NavigationProp<CatRoomStackParamList>>();
 
-  const buttonData: [[Subroom, StyleProp<ViewStyle>, StyleProp<ImageStyle>, ImageRequireSource]] = [
+  const buttonData: [Subroom, StyleProp<ViewStyle>, StyleProp<ImageStyle>, ImageRequireSource][] = [
     [Subroom.food, styles.foodButton, styles.foodImage, require('../../assets/images/bowl3.png')],
     [Subroom.litter, styles.litterButton, styles.litterImage, require('../../assets/images/litter1.png')],
     [Subroom.toys, styles.toyButton, styles.toyImage, require('../../assets/images/toy3.png')],
