@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, ImageBackground, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, ImageStyle, ImageRequireSource } from 'react-native'
 import { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
 
@@ -11,22 +11,30 @@ export const CatRoomScreen: React.FC = () => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   const navigation = useNavigation<NavigationProp<CatRoomStackParamList>>();
 
+  const buttonData: [[Subroom, StyleProp<ViewStyle>, StyleProp<ImageStyle>, ImageRequireSource]] = [
+    [Subroom.food, styles.foodButton, styles.foodImage, require('../../assets/images/bowl3.png')],
+    [Subroom.litter, styles.litterButton, styles.litterImage, require('../../assets/images/litter1.png')],
+    [Subroom.toys, styles.toyButton, styles.toyImage, require('../../assets/images/toy3.png')],
+    [Subroom.scratchingItems, styles.scratchingButton, styles.scratchingImage, require('../../assets/images/scratching1.png')],
+    [Subroom.bedding, styles.bedButton, styles.bedImage, require('../../assets/images/bed1.png')],
+    [Subroom.vet, styles.vetButton, styles.vetImage, require('../../assets/images/vet1.png')],
+  ];
+
   return (
     <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
-        <TouchableOpacity style = {styles.foodButton} onPress = {() => {
-          navigation.navigate('Subroom', {subroom: Subroom.food});
-        }}>
-          <Image source={require('../../assets/images/bowl3.png')} style = {styles.foodImage}/>
-        </TouchableOpacity>
-        <TouchableOpacity style = {styles.toyButton} onPress = {() => {
-          navigation.navigate('Subroom', {subroom: Subroom.toys});
-        }}>
-          <Image source={require('../../assets/images/toy3.png')} style = {styles.prepToyImage}/>
-        </TouchableOpacity>
+
+      {
+        buttonData.map((data) => (
+          <TouchableOpacity style = {data[1]} onPress = {() => {
+            navigation.navigate('Subroom', {subroom: data[0]});
+          }}>
+            <Image source={data[3]} style = {data[2]}/>
+          </TouchableOpacity>
+        ))
+      }
+
     </ImageBackground>
   );
-
-  // Use Phases to change positions of items
 }
 
 const styles = StyleSheet.create({
@@ -36,32 +44,78 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  prepToyImage: {
-    resizeMode: 'contain', 
-    width: 100, 
-    height: 100,
-  }, 
-
-  foodButton: {
-    bottom: 70, 
-    left: 30, 
-    width: 100, 
-    position: 'absolute',
-  }, 
-
-  foodImage: {
-    resizeMode: 'contain', 
-    width: 100,
-  },
-
   catRoom: {
     flex: 1,
   },
 
-  toyButton: {
-    bottom: 70, 
-    right: 30, 
-    width: 100, 
+  foodButton: {
+    bottom: 70,
+    left: 30,
+    width: 100,
     position: 'absolute',
-  }
+  },
+  foodImage: {
+    resizeMode: 'contain',
+    width: 100,
+  },
+
+  toyButton: {
+    bottom: 70,
+    right: 30,
+    width: 100,
+    position: 'absolute',
+  },
+  toyImage: {
+    resizeMode: 'contain',
+    width: 100,
+    height: 100,
+  },
+
+  litterButton: {
+    bottom: 150,
+    left: 150,
+    width: 100,
+    position: 'absolute',
+  },
+  litterImage: {
+    resizeMode: 'contain',
+    width: 100,
+    height: 100,
+  },
+
+  scratchingButton: {
+    bottom: 170,
+    right: 50,
+    width: 100,
+    position: 'absolute',
+  },
+  scratchingImage: {
+    resizeMode: 'contain',
+    width: 200,
+    height: 200,
+  },
+
+  bedButton: {
+    bottom: 10,
+    left: 120,
+    width: 150,
+    position: 'absolute',
+  },
+  bedImage: {
+    resizeMode: 'contain',
+    width: 150,
+    height: 100,
+  },
+
+  vetButton: {
+    top: 50,
+    left: 20,
+    width: 150,
+    position: 'absolute',
+  },
+  vetImage: {
+    resizeMode: 'contain',
+    width: 150,
+    height: 100,
+  },
 });

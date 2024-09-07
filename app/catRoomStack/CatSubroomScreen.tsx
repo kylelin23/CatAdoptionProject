@@ -41,10 +41,38 @@ const subroomImages: Record<Subroom, ImageRequireSource[]> = {
     require('../../assets/images/toy4.png'),
     require('../../assets/images/toy5.png'),
   ],
-  [Subroom.litter]: [],
-  [Subroom.scratchingItems]: [],
-  [Subroom.bedding]: [],
-  [Subroom.vet]: []
+  [Subroom.litter]: [
+    require('../../assets/images/litter1.png'),
+    require('../../assets/images/litter2.png'),
+    require('../../assets/images/litter3.png'),
+    require('../../assets/images/litter4.png'),
+    require('../../assets/images/litter5.png'),
+    require('../../assets/images/litter5.png'),
+  ],
+  [Subroom.scratchingItems]: [
+    require('../../assets/images/scratching1.png'),
+    require('../../assets/images/scratching2.png'),
+    require('../../assets/images/scratching3.png'),
+    require('../../assets/images/scratching4.png'),
+    require('../../assets/images/scratching5.png'),
+    require('../../assets/images/scratching6.png'),
+  ],
+  [Subroom.bedding]: [
+    require('../../assets/images/bed1.png'),
+    require('../../assets/images/bed2.png'),
+    require('../../assets/images/bed3.png'),
+    require('../../assets/images/bed4.png'),
+    require('../../assets/images/bed5.png'),
+    require('../../assets/images/bed6.png'),
+    require('../../assets/images/bed7.png'),
+    require('../../assets/images/bed8.png'),
+  ],
+  [Subroom.vet]: [
+    require('../../assets/images/vet1.png'),
+    require('../../assets/images/vet2.png'),
+    require('../../assets/images/vet3.png'),
+    require('../../assets/images/vet4.png'),
+  ],
 }
 
 type Props = NativeStackScreenProps<CatRoomStackParamList, 'Subroom'>;
@@ -72,7 +100,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
 
   return (
     <LinearGradient colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
-      {messageIndex == -1 && 
+      {messageIndex == -1 &&
       (<MessageView message={`${subroomContent?.thought}`}/>)}
 
       {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
@@ -107,14 +135,14 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
       <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
         <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
       </TouchableOpacity>
-    
+
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create( {
   cat: {
-    width: 100, 
+    width: 100,
     height: 100,
     resizeMode: 'contain',
   },
@@ -124,36 +152,36 @@ const styles = StyleSheet.create( {
   },
 
   button: {
-    position: 'absolute', 
-    bottom: 30, 
-  }, 
+    position: 'absolute',
+    bottom: 30,
+  },
 
   phase: {
-    fontSize: 50, 
-  }, 
+    fontSize: 50,
+  },
 
   placeholder: {
-    height: 60, 
+    height: 60,
     width: 60,
     resizeMode: 'contain',
   },
 
   textContainer: {
-    backgroundColor: 'purple', 
-    padding: 20, 
-    fontSize: 10, 
+    backgroundColor: 'purple',
+    padding: 20,
+    fontSize: 10,
     borderRadius: 15,
     height: 160,
     width: 200,
     justifyContent: 'center',
-  }, 
+  },
 
   container: {
-    position: 'absolute', 
-    justifyContent: 'center', 
+    position: 'absolute',
+    justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
     width: '100%',
-  }, 
+  },
 
 })
