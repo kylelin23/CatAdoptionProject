@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   bottomSafeArea: {
     flex: 1,
-    backgroundColor: 'rgb(139, 223, 232)'
+    backgroundColor: 'purple'
   },
   screen: {
     flex: 1,
