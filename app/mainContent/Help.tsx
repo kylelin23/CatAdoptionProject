@@ -25,43 +25,41 @@ const MainContent: React.FC<MainContentProps> = () => {
 
   if (!phase) { // Starting home page
     return(
-      <View>
+      <LinearGradient colors = {['rgb(217, 147, 210)', 'white']}style = {styles.homePageImage}>
         <View style = {styles.title}>
           <Text style = {styles.titleText}>Welcome to Catwise! </Text>
         </View>
-        <LinearGradient colors = {['rgb(217, 147, 210)', 'white']}style = {styles.homePageImage}>
-          <TouchableOpacity style = {styles.catImageContainer} onPress = {changeVisibility}>
-            <Image style = {styles.catImage} source = {require('../../assets/images/maggy2.jpeg')}></Image>
-          </TouchableOpacity>
-          <View style = {styles.container}>
-            {(isVisible == false) && 
-            (<View>
-              <Text style = {{fontSize: 25, color: 'purple',}}>Our app organizes bite-sized tips for you in 4 phases, tap the cat to learn about them! </Text>
-            </View>)}
-            {(isVisible == true) && 
-            (<View style = {{gap: 15}}>
+        <TouchableOpacity style = {styles.catImageContainer} onPress = {changeVisibility}>
+          <Image style = {styles.catImage} source = {require('../../assets/images/maggy2.jpeg')}></Image>
+        </TouchableOpacity>
+        <View style = {styles.container}>
+          {(isVisible == false) &&
+          (<View>
+            <Text style = {{fontSize: 25, color: 'purple',}}>Our app organizes bite-sized tips for you in 4 phases, tap the cat to learn about them! </Text>
+          </View>)}
+          {(isVisible == true) &&
+          (<View style = {{gap: 15}}>
+            <View>
               <View>
-                <View>
-                  <Text style = {styles.text}>P - Preparation</Text>
-                </View>
-                <View>
-                  <Text style = {styles.text}>A - Adoption Day</Text>
-                </View>
-                <View>
-                  <Text style = {styles.text}>W - Week One</Text>
-                </View>
-                <View>
-                  <Text style = {styles.text}>S - Settling In! </Text>
-                </View>
+                <Text style = {styles.text}>P - Preparation</Text>
               </View>
               <View>
-                <Text style = {styles.text}>Click on your current phase below to get started! </Text>
+                <Text style = {styles.text}>A - Adoption Day</Text>
+              </View>
+              <View>
+                <Text style = {styles.text}>W - Week One</Text>
+              </View>
+              <View>
+                <Text style = {styles.text}>S - Settling In! </Text>
               </View>
             </View>
-            )}
+            <View>
+              <Text style = {styles.text}>Click on your current phase below to get started! </Text>
+            </View>
           </View>
-        </LinearGradient>
-      </View>
+          )}
+        </View>
+      </LinearGradient>
     )
   }
 
@@ -95,10 +93,10 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    // backgroundColor: 'rgb(187, 198, 201)', 
+    // backgroundColor: 'rgb(187, 198, 201)',
     backgroundColor: 'purple',
     height: 80,
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -118,33 +116,33 @@ const styles = StyleSheet.create({
   },
 
   prepToyImage: {
-    resizeMode: 'contain', 
+    resizeMode: 'contain',
     height: 100,
     width: 100,
-    bottom: 100, 
+    bottom: 100,
     right: 50,
     position: 'absolute',
-  }, 
+  },
 
   button: {
-    bottom: 70, 
-    left: 30, 
-    width: 100, 
+    bottom: 70,
+    left: 30,
+    width: 100,
     position: 'absolute',
     backgroundColor: 'red',
     borderColor: 'blue',
     borderWidth: 1,
-  }, 
+  },
 
   image: {
-    resizeMode: 'contain', 
+    resizeMode: 'contain',
     width: 100,
   },
 
   text: {
     fontSize: 22,
     color: 'purple',
-  }, 
+  },
 
   container: {
     padding: 20,
@@ -152,10 +150,10 @@ const styles = StyleSheet.create({
   },
 
   catImage: {
-    // position: 'absolute', 
+    // position: 'absolute',
     height: 300,
     resizeMode: 'contain',
-  }, 
+  },
 
   catImageContainer: {
     alignItems: 'center',
