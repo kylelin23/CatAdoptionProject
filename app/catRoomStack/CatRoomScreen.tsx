@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Image, ImageBackground, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, ImageStyle, ImageRequireSource } from 'react-native'
+import { Dimensions, Text, View, Image, ImageBackground, StyleSheet, TouchableOpacity, StyleProp, ViewStyle, ImageStyle, ImageRequireSource } from 'react-native'
 import { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
 
@@ -7,7 +7,10 @@ import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { CatRoomStackParamList } from "./params"
 import { Subroom } from '@/constants/content';
 
+const screenHeight: number = Dimensions.get('window').height;
+
 export const CatRoomScreen: React.FC = () => {
+
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   const navigation = useNavigation<NavigationProp<CatRoomStackParamList>>();
 
@@ -21,19 +24,24 @@ export const CatRoomScreen: React.FC = () => {
   ];
 
   return (
-    <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+    <View>
+      <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
+        {
+          buttonData.map((data) => (
+            <TouchableOpacity key={data[0]} style = {data[1]} onPress = {() => {
+              navigation.navigate('Subroom', {subroom: data[0]});
+            }}>
+              <Image source={data[3]} style = {data[2]}/>
+            </TouchableOpacity>
+          ))
+        }
 
-      {
-        buttonData.map((data) => (
-          <TouchableOpacity key={data[0]} style = {data[1]} onPress = {() => {
-            navigation.navigate('Subroom', {subroom: data[0]});
-          }}>
-            <Image source={data[3]} style = {data[2]}/>
-          </TouchableOpacity>
-        ))
-      }
+      </ImageBackground>
+      <View style = {styles.instructionsContainer}>
+        <Text style = {styles.instructions}>Click on a cat item to get started! </Text>
+      </View>
+    </View>
 
-    </ImageBackground>
   );
 }
 
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
   },
 
   catRoom: {
-    flex: 1,
+    height: screenHeight - 215,
   },
 
   foodButton: {
@@ -117,5 +125,17 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 150,
     height: 100,
+  },
+
+  instructions: {
+    fontSize: 27,
+    textAlign: 'center',
+  },
+
+  instructionsContainer: {
+    backgroundColor: 'rgb(217, 147, 210)',
+    width: '100%',
+    height: 100,
+    paddingVertical: 10,
   },
 });

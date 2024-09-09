@@ -16,20 +16,20 @@ export const CatRoomStack: React.FC = () => {
   return (
     <NavigationContainer independent>
       <Stack.Navigator initialRouteName='Home' screenOptions={{
-        headerStyle: { 
-          backgroundColor: 'rgb(187, 198, 201)', 
+        headerStyle: {
+          backgroundColor: 'rgb(187, 198, 201)',
         },
         headerTintColor: 'black'
       }}>
-        <Stack.Screen 
+        <Stack.Screen
           name='Home'
           component={CatRoomScreen}
           options={{
             headerTitle: () => <CustomHeader title='Home' />, // use the custom header
           }}
         />
-        
-        <Stack.Screen 
+
+        <Stack.Screen
           name='Subroom'
           component={CatSubroomScreen}
         />
