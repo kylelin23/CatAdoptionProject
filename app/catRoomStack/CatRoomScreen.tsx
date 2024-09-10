@@ -7,7 +7,7 @@ import PhaseContext, { PhaseContextType } from '@/context/PhaseContext';
 import { CatRoomStackParamList } from "./params"
 import { Subroom } from '@/constants/content';
 
-const screenHeight: number = Dimensions.get('window').height;
+// const screenHeight: number = Dimensions.get('window').height;
 
 export const CatRoomScreen: React.FC = () => {
 
@@ -25,9 +25,6 @@ export const CatRoomScreen: React.FC = () => {
 
   return (
     <View>
-      <View style = {styles.instructionsContainer}>
-        <Text style = {styles.instructions}>Click on a cat item to get started! </Text>
-      </View>
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         {
           buttonData.map((data) => (
@@ -40,6 +37,9 @@ export const CatRoomScreen: React.FC = () => {
         }
 
       </ImageBackground>
+      <View style = {styles.instructionsContainer}>
+        <Text style = {styles.instructions}>Click on a cat item to get started! </Text>
+      </View>
 
     </View>
 
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   catRoom: {
-    height: screenHeight - 215,
+    height: '100%'
   },
 
   foodButton: {
@@ -129,14 +129,20 @@ const styles = StyleSheet.create({
   },
 
   instructions: {
-    fontSize: 27,
+    fontSize: 15,
     textAlign: 'center',
   },
 
   instructionsContainer: {
     backgroundColor: 'rgb(217, 147, 210)',
-    width: '100%',
-    height: 70,
+    width: 150,
+    height: 150,
     paddingVertical: 10,
+    position: 'absolute',
+    borderRadius: 100,
+    justifyContent: 'center',
+    marginTop: 10,
+    right: 10,
   },
+
 });
