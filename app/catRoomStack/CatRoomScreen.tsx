@@ -25,6 +25,9 @@ export const CatRoomScreen: React.FC = () => {
 
   return (
     <View>
+      <View style = {styles.instructionsContainer}>
+        <Text style = {styles.instructions}>Click on a cat item to get started! </Text>
+      </View>
       <ImageBackground source = {require('../../assets/images/room4.png')} resizeMode = 'cover' style = {styles.catRoom}>
         {
           buttonData.map((data) => (
@@ -37,9 +40,7 @@ export const CatRoomScreen: React.FC = () => {
         }
 
       </ImageBackground>
-      <View style = {styles.instructionsContainer}>
-        <Text style = {styles.instructions}>Click on a cat item to get started! </Text>
-      </View>
+
     </View>
 
   );
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   instructionsContainer: {
     backgroundColor: 'rgb(217, 147, 210)',
     width: '100%',
-    height: 100,
+    height: 70,
     paddingVertical: 10,
   },
 });

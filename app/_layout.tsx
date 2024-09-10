@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   screen: {
     flex: 1,
-  }, 
+  },
 
   mainContent: {
     flex: 1,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
   navBar: {
     justifyContent: 'flex-end',
-    width: '100%', 
+    width: '100%',
     bottom: 0,
   }
 
