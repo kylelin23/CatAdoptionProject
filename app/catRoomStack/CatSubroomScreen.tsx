@@ -85,6 +85,16 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
 
   const images = subroomImages[route.params.subroom];
 
+  const [showImage, setImage] = useState(true);
+
+  useEffect(() => {
+    // Change the state every second or the time given by User.
+    const interval = setInterval(() => {
+      setImage((showImage) => !showImage);
+    }, 900);
+    return () => clearInterval(interval);
+  }, []);
+
   // isVisible is set to false and you can use setIsVisible to change the value of isVisible
   const showMessage = (index: number) => {
     setMessageIndex(index);
@@ -133,7 +143,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
       {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
 
       <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
-        <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
+        <Image source = {require('../../assets/images/cat.webp')} style = {[styles.cat, {display: showImage ? 'none': 'flex'}]}></Image>
       </TouchableOpacity>
 
     </LinearGradient>
