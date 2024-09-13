@@ -147,12 +147,33 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
     }
   ];
 
+  var offset = 0;
+  if(subroom == Subroom.litter){
+    offset = 1;
+  }
+  else if(subroom == Subroom.bedding){
+    offset = 2;
+  }
+  else if(subroom == Subroom.toys){
+    offset = 3;
+  }
+  else if(subroom == Subroom.vet){
+    offset = 4;
+  }
+  else if(subroom == Subroom.scratchingItems){
+    offset = 5;
+  }
+  else{
+    offset = 0;
+  }
+
 
   return (
     <ScrollView
       horizontal
       pagingEnabled
       showsHorizontalScrollIndicator = {false}
+      contentOffset={{x: screenWidth * offset, y: 0}}
       style = {styles.scrollView}
     >
       {pages.map((page, index) => (
