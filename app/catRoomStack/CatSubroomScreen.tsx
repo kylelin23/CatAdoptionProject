@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ImageRequireSource } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageRequireSource, ScrollView, Dimensions } from 'react-native'
 import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -77,6 +77,9 @@ const subroomImages: Record<Subroom, ImageRequireSource[]> = {
 
 type Props = NativeStackScreenProps<CatRoomStackParamList, 'Subroom'>;
 
+const screenWidth = Dimensions.get('window').width;
+
+
 export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   const { phase } = useContext<PhaseContextType>(PhaseContext);
   const subroom = route.params.subroom;
@@ -85,15 +88,15 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
 
   const images = subroomImages[route.params.subroom];
 
-  const [showImage, setImage] = useState(true);
+  // const [showImage, setImage] = useState(true);
 
-  useEffect(() => {
-    // Change the state every second or the time given by User.
-    const interval = setInterval(() => {
-      setImage((showImage) => !showImage);
-    }, 900);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   // Change the state every second or the time given by User.
+  //   const interval = setInterval(() => {
+  //     setImage((showImage) => !showImage);
+  //   }, 900);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // isVisible is set to false and you can use setIsVisible to change the value of isVisible
   const showMessage = (index: number) => {
@@ -106,47 +109,95 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
     });
   }, [route.params.subroom]);
 
-  // const halfScreenWidth = Dimensions.get('window').width/2;
+  const pages = [
+    {
+      subroom: Subroom.food,
+      subroomContent: phase ? content[phase][Subroom.food] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.food],
+    },
+
+    {
+      subroom: Subroom.litter,
+      subroomContent: phase ? content[phase][Subroom.litter] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.litter],
+    },
+
+    {
+      subroom: Subroom.bedding,
+      subroomContent: phase ? content[phase][Subroom.bedding] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.bedding],
+    },
+
+    {
+      subroom: Subroom.toys,
+      subroomContent: phase ? content[phase][Subroom.toys] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.toys],
+    },
+
+    {
+      subroom: Subroom.vet,
+      subroomContent: phase ? content[phase][Subroom.vet] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.vet],
+    },
+
+    {
+      subroom: Subroom.scratchingItems,
+      subroomContent: phase ? content[phase][Subroom.scratchingItems] : { thought: '', messages: [] },
+      images: subroomImages[Subroom.scratchingItems],
+    }
+  ];
+
 
   return (
-    <LinearGradient colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
-      {messageIndex == -1 &&
-      (<MessageView message={`${subroomContent?.thought}`}/>)}
+    <ScrollView
+      horizontal
+      pagingEnabled
+      showsHorizontalScrollIndicator = {false}
+      style = {styles.scrollView}
+    >
+      {pages.map((page, index) => (
+        <LinearGradient key = {index} colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
+          {messageIndex == -1 &&
+          (<MessageView message={`${page.subroomContent?.thought}`}/>)}
 
-      {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
-      (<MessageView key={messageIndex} message={`${subroomContent?.messages[messageIndex]}`}/>)}
+          {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
+          (<MessageView key={messageIndex} message={`${subroomContent?.messages[messageIndex]}`}/>)}
 
-      <View style = {{flex: 1, justifyContent: 'center'}}>
-        <View style = {{gap: 80,}}>
-          <View style = {{alignItems: 'center'}}>
-            <TouchableOpacity onPress = {() => showMessage(0)}>
-              <Image source = {(images[0])}style = {styles.placeholder}></Image>
-            </TouchableOpacity>
+          <View style = {{flex: 1, justifyContent: 'center'}}>
+            <View style = {{gap: 80,}}>
+              <View style = {{alignItems: 'center'}}>
+                <TouchableOpacity onPress = {() => showMessage(0)}>
+                  <Image source = {(page.images[0])}style = {styles.placeholder}></Image>
+                </TouchableOpacity>
+              </View>
+              <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <TouchableOpacity onPress = {() => showMessage(1)}>
+                  <Image source = {(page.images[1])}style = {styles.placeholder}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => showMessage(2)}>
+                  <Image source = {(page.images[2])}style = {styles.placeholder}></Image>
+                </TouchableOpacity>
+              </View>
+              <View style = {{alignItems: 'center'}}>
+                <TouchableOpacity onPress = {() => showMessage(3)}>
+                  <Image source = {(page.images[3])}style = {styles.placeholder}></Image>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-          <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TouchableOpacity onPress = {() => showMessage(1)}>
-              <Image source = {(images[1])}style = {styles.placeholder}></Image>
-            </TouchableOpacity>
-            <TouchableOpacity onPress = {() => showMessage(2)}>
-              <Image source = {(images[2])}style = {styles.placeholder}></Image>
-            </TouchableOpacity>
-          </View>
-          <View style = {{alignItems: 'center'}}>
-            <TouchableOpacity onPress = {() => showMessage(3)}>
-              <Image source = {(images[3])}style = {styles.placeholder}></Image>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
 
 
-      {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
+          {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
 
-      <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
-        <Image source = {require('../../assets/images/cat.webp')} style = {[styles.cat, {display: showImage ? 'none': 'flex'}]}></Image>
-      </TouchableOpacity>
+          <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
+            <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
+          </TouchableOpacity>
 
-    </LinearGradient>
+        </LinearGradient>
+      ))}
+
+    </ScrollView>
+
   );
 }
 
@@ -159,6 +210,7 @@ const styles = StyleSheet.create( {
 
   screen: {
     flex: 1,
+    width: screenWidth,
   },
 
   button: {
@@ -192,6 +244,10 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     height: '100%',
     width: '100%',
+  },
+
+  scrollView: {
+    flex: 1
   },
 
 })
