@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ImageRequireSource, ScrollView, Dimensions } from 'react-native'
+import React, { useContext, useEffect, useState, useCallback } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageRequireSource, ScrollView, Dimensions, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -86,7 +86,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   const subroomContent = phase ? content[phase][subroom] : { thought: '', messages: [] };
   const [messageIndex, setMessageIndex] = useState<number>(-1);
 
-  const images = subroomImages[route.params.subroom];
+  const images = subroomImages[subroom];
 
   // const [showImage, setImage] = useState(true);
 
@@ -105,9 +105,9 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: () => <CustomHeader title={SubroomNames[route.params.subroom]} />, // use the custom header
+      headerTitle: () => <CustomHeader title={SubroomNames[subroom]} />, // use the custom header
     });
-  }, [route.params.subroom]);
+  }, [subroom]);
 
   const pages = [
     {
@@ -167,6 +167,14 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
     offset = 0;
   }
 
+  const onMomentumScrollEnd = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const pageNum = event.nativeEvent.contentOffset.x / screenWidth;
+    if (pageNum >= 0 && pageNum < pages.length) {
+      navigation.setOptions({
+        headerTitle: () => <CustomHeader title={SubroomNames[pages[pageNum].subroom]} />,
+      });
+    }
+  }, [navigation]);
 
   return (
     <ScrollView
@@ -175,6 +183,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
       showsHorizontalScrollIndicator = {false}
       contentOffset={{x: screenWidth * offset, y: 0}}
       style = {styles.scrollView}
+      onMomentumScrollEnd={onMomentumScrollEnd}
     >
       {pages.map((page, index) => (
         <LinearGradient key = {index} colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
