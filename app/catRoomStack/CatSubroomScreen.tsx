@@ -21,7 +21,7 @@ const MessageView: React.FC<MessageViewProp> = ({message}) => {
       exiting={FadeOutRight.springify()}
     >
       <View style = {styles.textContainer}>
-        <Text>{message}</Text>
+        <Text style = {{color: 'white'}}>{message}</Text>
       </View>
     </Animated.View>
   );
