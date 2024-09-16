@@ -191,7 +191,7 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
           (<MessageView message={`${page.subroomContent?.thought}`}/>)}
 
           {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
-          (<MessageView key={messageIndex} message={`${subroomContent?.messages[messageIndex]}`}/>)}
+          (<MessageView key={messageIndex} message={`${page.subroomContent?.messages[messageIndex]}`}/>)}
 
           <View style = {{flex: 1, justifyContent: 'center'}}>
             <View style = {{gap: 80,}}>
