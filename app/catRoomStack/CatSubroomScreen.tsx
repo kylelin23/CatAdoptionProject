@@ -8,6 +8,8 @@ import { content, SubroomNames, Subroom } from '@/constants/content';
 import { LinearGradient } from 'expo-linear-gradient';
 import { CatRoomStackParamList } from './params'
 import { CustomHeader } from "./CustomHeader";
+import PageControl from 'react-native-page-control';
+
 
 type MessageViewProp = {
   message: string,
@@ -78,6 +80,8 @@ const subroomImages: Record<Subroom, ImageRequireSource[]> = {
 type Props = NativeStackScreenProps<CatRoomStackParamList, 'Subroom'>;
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
 
 
 export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
@@ -177,56 +181,60 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
   }, [navigation]);
 
   return (
-    <ScrollView
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator = {false}
-      contentOffset={{x: screenWidth * offset, y: 0}}
-      style = {styles.scrollView}
-      onMomentumScrollEnd={onMomentumScrollEnd}
-    >
-      {pages.map((page, index) => (
-        <LinearGradient key = {index} colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
-          {messageIndex == -1 &&
-          (<MessageView message={`${page.subroomContent?.thought}`}/>)}
+    <View style = {{flex: 1}}>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator = {false}
+        contentOffset={{x: screenWidth * offset, y: 0}}
+        style = {styles.scrollView}
+        onMomentumScrollEnd={onMomentumScrollEnd}
+      >
+        {pages.map((page, index) => (
+          <LinearGradient key = {index} colors={['rgb(217, 147, 210)', 'white']} style = {styles.screen}>
+            {messageIndex == -1 &&
+            (<MessageView message={`${page.subroomContent?.thought}`}/>)}
 
-          {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
-          (<MessageView key={messageIndex} message={`${page.subroomContent?.messages[messageIndex]}`}/>)}
+            {(messageIndex == 0 || messageIndex == 1 || messageIndex == 2 || messageIndex == 3) &&
+            (<MessageView key={messageIndex} message={`${page.subroomContent?.messages[messageIndex]}`}/>)}
 
-          <View style = {{flex: 1, justifyContent: 'center'}}>
-            <View style = {{gap: 80,}}>
-              <View style = {{alignItems: 'center'}}>
-                <TouchableOpacity onPress = {() => showMessage(0)}>
-                  <Image source = {(page.images[0])}style = {styles.placeholder}></Image>
-                </TouchableOpacity>
-              </View>
-              <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <TouchableOpacity onPress = {() => showMessage(1)}>
-                  <Image source = {(page.images[1])}style = {styles.placeholder}></Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress = {() => showMessage(2)}>
-                  <Image source = {(page.images[2])}style = {styles.placeholder}></Image>
-                </TouchableOpacity>
-              </View>
-              <View style = {{alignItems: 'center'}}>
-                <TouchableOpacity onPress = {() => showMessage(3)}>
-                  <Image source = {(page.images[3])}style = {styles.placeholder}></Image>
-                </TouchableOpacity>
+            <View style = {{flex: 1, justifyContent: 'center'}}>
+              <View style = {{gap: 80,}}>
+                <View style = {{alignItems: 'center'}}>
+                  <TouchableOpacity onPress = {() => showMessage(0)}>
+                    <Image source = {(page.images[0])}style = {styles.placeholder}></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <TouchableOpacity onPress = {() => showMessage(1)}>
+                    <Image source = {(page.images[1])}style = {styles.placeholder}></Image>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress = {() => showMessage(2)}>
+                    <Image source = {(page.images[2])}style = {styles.placeholder}></Image>
+                  </TouchableOpacity>
+                </View>
+                <View style = {{alignItems: 'center'}}>
+                  <TouchableOpacity onPress = {() => showMessage(3)}>
+                    <Image source = {(page.images[3])}style = {styles.placeholder}></Image>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
 
 
-          {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
+            {/* {subroomContent?.messages.map((message, index) => <Text key={index}>Message: {message}</Text>)} */}
 
-          <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
-            <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
-          </TouchableOpacity>
+            <TouchableOpacity style = {styles.button} onPress = {() => showMessage(-1)}>
+              <Image source = {require('../../assets/images/cat.webp')} style = {styles.cat}></Image>
+            </TouchableOpacity>
 
-        </LinearGradient>
-      ))}
+          </LinearGradient>
+        ))}
 
-    </ScrollView>
+      </ScrollView>
+      <PageControl numberOfPages={6} currentPage = {offset}/>
+    </View>
+
 
   );
 }
@@ -277,7 +285,9 @@ const styles = StyleSheet.create( {
   },
 
   scrollView: {
-    flex: 1
+    flex: 1,
+    height: screenHeight,
+    widht: screenWidth,
   },
 
 })
