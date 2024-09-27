@@ -8,7 +8,9 @@ import { content, SubroomNames, Subroom } from '@/constants/content';
 import { LinearGradient } from 'expo-linear-gradient';
 import { CatRoomStackParamList } from './params'
 import { CustomHeader } from "./CustomHeader";
-import PageControl from 'react-native-page-control';
+
+import PaginationDot from 'react-native-animated-pagination-dot'
+
 
 
 type MessageViewProp = {
@@ -171,8 +173,12 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
     offset = 0;
   }
 
+  const [pageNum, setPageNum] = useState<number>(offset);
+
+
   const onMomentumScrollEnd = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const pageNum = event.nativeEvent.contentOffset.x / screenWidth;
+    setPageNum(pageNum);
     if (pageNum >= 0 && pageNum < pages.length) {
       navigation.setOptions({
         headerTitle: () => <CustomHeader title={SubroomNames[pages[pageNum].subroom]} />,
@@ -232,7 +238,13 @@ export const CatSubroomScreen: React.FC<Props> = ({navigation, route}) => {
         ))}
 
       </ScrollView>
-      <PageControl numberOfPages={6} currentPage = {offset}/>
+      <View style = {styles.pageBarContainer}>
+        <PaginationDot
+              activeDotColor={'black'}
+              curPage={pageNum}
+              maxPage={6}
+          />
+      </View>
     </View>
 
 
@@ -287,7 +299,15 @@ const styles = StyleSheet.create( {
   scrollView: {
     flex: 1,
     height: screenHeight,
-    widht: screenWidth,
+    width: screenWidth,
   },
 
+  pageBarContainer: {
+    position: 'absolute',
+    bottom: screenHeight/8,
+    flex: 1,
+    alignItems: 'center',
+    width: '100%',
+
+  }
 })
